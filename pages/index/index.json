@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "有因有果",
+  "enablePullDownRefresh": true,
+  "backgroundTextStyle": "dark",
+  "usingComponents": {
+    "teacher-card": "/components/teacher-card/teacher-card",
+    "empty-state": "/components/empty-state/empty-state"
+  }
+}

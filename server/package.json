@@ -1,0 +1,26 @@
+{
+  "name": "server",
+  "version": "1.1.0",
+  "description": "有因有果名师推荐小程序后端：Express 5 + MySQL + Redis 可选缓存",
+  "main": "app.js",
+  "scripts": {
+    "init-db": "node init_db.js",
+    "start": "node app.js",
+    "dev": "node --watch app.js",
+    "test": "node --test test/api.test.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "cors": "^2.8.6",
+    "dotenv": "^18.0.10",
+    "express": "^5.3.0",
+    "ioredis": "^6.1.0",
+    "jsonwebtoken": "^9.0.3",
+    "multer": "^2.5.0",
+    "mysql2": "^3.24.6",
+    "node-cron": "^4.6.0"
+  }
+}

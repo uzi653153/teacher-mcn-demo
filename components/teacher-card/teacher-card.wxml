@@ -1,0 +1,24 @@
+<view class="t-card" hover-class="t-card--hover" bindtap="onTap">
+  <view class="t-avatar" style="background: {{teacher.avatarColor}}">
+    <image
+      wx:if="{{teacher.avatar}}"
+      class="t-avatar-img"
+      src="{{teacher.avatar}}"
+      mode="aspectFill"
+    />
+    <text wx:else class="t-avatar-text">{{teacher.initial}}</text>
+  </view>
+
+  <view class="t-body">
+    <view class="t-top">
+      <text class="t-name">{{teacher.name}}</text>
+      <text class="t-fans">{{teacher.fansText}} 粉丝</text>
+    </view>
+    <text class="t-title ellipsis">{{teacher.title}}</text>
+    <view class="t-tags">
+      <text class="t-tag" wx:for="{{teacher.tags}}" wx:key="*this">{{item}}</text>
+    </view>
+  </view>
+
+  <text class="t-arrow">›</text>
+</view>

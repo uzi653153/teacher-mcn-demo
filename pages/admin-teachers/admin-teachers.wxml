@@ -1,0 +1,137 @@
+<view class="page" wx:if="{{isAdmin}}">
+  <view class="head">
+    <view class="head-info">
+      <text class="head-title">名师管理</text>
+      <text class="head-sub">共 {{list.length}} 位名师，可上下架与编辑资料</text>
+    </view>
+    <view class="add-btn" bindtap="onCreate">新增名师</view>
+  </view>
+
+  <view class="list" wx:if="{{!error}}">
+    <view class="item" wx:for="{{list}}" wx:key="id">
+      <view class="item-main" data-id="{{item.id}}" bindtap="onEdit">
+        <image wx:if="{{item.avatarUrl}}" class="avatar" src="{{item.avatarUrl}}" mode="aspectFill" />
+        <view wx:else class="avatar avatar--fallback">{{item.initial}}</view>
+
+        <view class="info">
+          <view class="name-line">
+            <text class="name">{{item.name}}</text>
+            <text class="status {{item.status === 1 ? 'status--on' : 'status--off'}}">
+              {{item.status === 1 ? '已上架' : '已下架'}}
+            </text>
+          </view>
+          <text class="sub">{{item.title || '暂未填写头衔'}}</text>
+          <text class="tags">{{item.stage}} · {{item.subject}} · {{item.fansText}} 粉丝</text>
+        </view>
+
+        <text class="arrow">›</text>
+      </view>
+
+      <view class="item-foot">
+        <text class="edit-link" data-id="{{item.id}}" catchtap="onEdit">编辑资料</text>
+        <view
+          class="toggle {{item.status === 1 ? 'toggle--off' : 'toggle--on'}}"
+          data-id="{{item.id}}"
+          catchtap="onToggleStatus"
+        >{{item.status === 1 ? '下架' : '上架'}}</view>
+      </view>
+    </view>
+
+    <view class="loading" wx:if="{{loading}}">加载中...</view>
+  </view>
+
+  <empty-state
+    wx:if="{{error}}"
+    title="名师加载失败"
+    desc="{{error}}"
+    action-text="重新加载"
+    bindaction="onRetry"
+  />
+</view>
+
+<empty-state
+  wx:if="{{!isAdmin}}"
+  title="仅管理员可见"
+  desc="请使用管理员账号登录后管理名师"
+  action-text="返回首页"
+  bindaction="onBackHome"
+/>
+
+<view class="mask" wx:if="{{showForm}}" bindtap="onCloseForm"></view>
+
+<view class="sheet" wx:if="{{showForm}}" catchtap="noop">
+  <scroll-view class="sheet-body" scroll-y>
+    <view class="sheet-head">
+      <text class="sheet-title">{{form.id ? '编辑名师' : '新增名师'}}</text>
+      <text class="sheet-close" bindtap="onCloseForm">关闭</text>
+    </view>
+
+    <view class="avatar-row">
+      <image wx:if="{{form.avatarUrl}}" class="avatar avatar--large" src="{{form.avatarUrl}}" mode="aspectFill" />
+      <view wx:else class="avatar avatar--large avatar--fallback">师</view>
+      <view class="avatar-actions">
+        <view class="upload-btn" bindtap="onChooseAvatar">
+          {{uploading ? '上传中...' : '上传头像'}}
+        </view>
+        <text class="avatar-tip">支持 jpg/png/webp，2MB 以内</text>
+      </view>
+    </view>
+
+    <view class="field">
+      <text class="label">姓名</text>
+      <input class="input" value="{{form.name}}" data-field="name" bindinput="onFieldInput" placeholder="如：汤圆老师" maxlength="20" />
+    </view>
+
+    <view class="field">
+      <text class="label">头衔</text>
+      <input class="input" value="{{form.title}}" data-field="title" bindinput="onFieldInput" placeholder="如：前学而思语文教研组长" maxlength="40" />
+    </view>
+
+    <view class="field-row">
+      <view class="field field--half">
+        <text class="label">学段</text>
+        <picker mode="selector" range="{{stages}}" value="{{form.stageIndex}}" bindchange="onStageChange">
+          <view class="picker">{{stages[form.stageIndex]}}<text class="picker-arrow">▾</text></view>
+        </picker>
+      </view>
+      <view class="field field--half">
+        <text class="label">学科</text>
+        <input class="input" value="{{form.subject}}" data-field="subject" bindinput="onFieldInput" placeholder="如：语文" maxlength="16" />
+      </view>
+    </view>
+
+    <view class="field">
+      <text class="label">标签</text>
+      <input class="input" value="{{form.tagsText}}" data-field="tagsText" bindinput="onFieldInput" placeholder="用逗号分隔，如：小学，语文，阅读理解" maxlength="80" />
+    </view>
+
+    <view class="field-row">
+      <view class="field field--half">
+        <text class="label">粉丝数</text>
+        <input class="input" type="number" value="{{form.fans}}" data-field="fans" bindinput="onFieldInput" placeholder="0" />
+      </view>
+      <view class="field field--half">
+        <text class="label">教龄（年）</text>
+        <input class="input" type="number" value="{{form.years}}" data-field="years" bindinput="onFieldInput" placeholder="0" />
+      </view>
+    </view>
+
+    <view class="field">
+      <text class="label">简介</text>
+      <textarea class="textarea" value="{{form.intro}}" data-field="intro" bindinput="onFieldInput" placeholder="一句话介绍教学特色与成果" maxlength="300" />
+    </view>
+
+    <view class="switch-row">
+      <view>
+        <text class="switch-label">上架展示</text>
+        <text class="switch-sub">关闭后小程序端不再展示该名师</text>
+      </view>
+      <switch checked="{{form.status === 1}}" color="#2B4ACB" bindchange="onStatusChange" />
+    </view>
+
+    <view class="sheet-foot">
+      <view class="btn btn--ghost" bindtap="onCloseForm">取消</view>
+      <view class="btn btn--primary" bindtap="onSave">{{saving ? '保存中...' : '保存'}}</view>
+    </view>
+  </scroll-view>
+</view>

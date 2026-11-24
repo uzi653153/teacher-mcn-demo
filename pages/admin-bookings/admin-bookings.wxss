@@ -1,0 +1,187 @@
+/**admin-bookings.wxss**/
+.page {
+  min-height: 100vh;
+  padding: 28rpx 24rpx 60rpx;
+}
+
+.head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 8rpx 8rpx 24rpx;
+}
+
+.head-main {
+  min-width: 0;
+}
+
+.head-logout {
+  flex-shrink: 0;
+  margin-top: 6rpx;
+  padding: 8rpx 20rpx;
+  font-size: 22rpx;
+  color: var(--text-2);
+  background: #ffffff;
+  border: 1rpx solid var(--line);
+  border-radius: 999rpx;
+}
+
+.head-title {
+  display: block;
+  font-size: 40rpx;
+  font-weight: 700;
+}
+
+.head-sub {
+  display: block;
+  margin-top: 8rpx;
+  font-size: 22rpx;
+  color: var(--text-3);
+}
+
+.tabs {
+  display: flex;
+  padding: 6rpx;
+  margin-bottom: 24rpx;
+  background: #eaeefa;
+  border-radius: 999rpx;
+}
+
+.tab {
+  flex: 1;
+  height: 62rpx;
+  line-height: 62rpx;
+  text-align: center;
+  font-size: 24rpx;
+  color: var(--text-2);
+  border-radius: 999rpx;
+}
+
+.tab--active {
+  color: var(--brand);
+  font-weight: 600;
+  background: #ffffff;
+  box-shadow: 0 6rpx 16rpx rgba(26, 34, 51, 0.08);
+}
+
+.card {
+  padding: 28rpx;
+  margin-bottom: 20rpx;
+  background: #ffffff;
+  border-radius: 26rpx;
+  box-shadow: 0 8rpx 24rpx rgba(26, 34, 51, 0.05);
+}
+
+.card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.teacher {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+}
+
+.avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 76rpx;
+  height: 76rpx;
+  font-size: 30rpx;
+  font-weight: 700;
+  color: #ffffff;
+  background: linear-gradient(135deg, #2b4acb, #5b7cfa);
+  border-radius: 22rpx;
+}
+
+.teacher-info {
+  margin-left: 18rpx;
+  min-width: 0;
+}
+
+.teacher-name {
+  display: block;
+  font-size: 28rpx;
+  font-weight: 600;
+}
+
+.teacher-meta {
+  display: block;
+  margin-top: 6rpx;
+  font-size: 21rpx;
+  color: var(--text-3);
+}
+
+.status {
+  flex-shrink: 0;
+  margin-left: 14rpx;
+  padding: 6rpx 16rpx;
+  font-size: 20rpx;
+  border-radius: 999rpx;
+}
+
+.status--pending {
+  color: #b54708;
+  background: #fffaeb;
+}
+
+.status--done {
+  color: #027a48;
+  background: #ecfdf3;
+}
+
+.status--cancel {
+  color: #667085;
+  background: #f2f4f7;
+}
+
+.detail {
+  margin-top: 20rpx;
+  padding: 18rpx 22rpx;
+  background: #f7f9fc;
+  border-radius: 16rpx;
+}
+
+.line {
+  display: block;
+  font-size: 24rpx;
+  line-height: 1.8;
+  color: var(--text-2);
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20rpx;
+}
+
+.action {
+  padding: 12rpx 28rpx;
+  margin-left: 16rpx;
+  font-size: 23rpx;
+  border-radius: 999rpx;
+}
+
+.action--ghost {
+  color: var(--text-3);
+  border: 1rpx solid var(--line);
+}
+
+.action--primary {
+  color: #ffffff;
+  background: linear-gradient(135deg, var(--brand), #5b7cfa);
+}
+
+.action--busy {
+  opacity: 0.6;
+}
+
+.loading {
+  padding: 90rpx 0;
+  text-align: center;
+  font-size: 24rpx;
+  color: var(--text-3);
+}

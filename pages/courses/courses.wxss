@@ -1,0 +1,222 @@
+.page {
+  padding: 0 24rpx 60rpx;
+}
+
+.head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding: 34rpx 8rpx 10rpx;
+}
+
+.head-title {
+  display: block;
+  font-size: 40rpx;
+  font-weight: 700;
+}
+
+.head-sub {
+  display: block;
+  margin-top: 8rpx;
+  font-size: 23rpx;
+  color: var(--text-3);
+}
+
+.mine-link {
+  padding: 10rpx 22rpx;
+  font-size: 23rpx;
+  color: var(--brand);
+  background: var(--brand-light);
+  border-radius: 999rpx;
+}
+
+.tabs {
+  margin-top: 20rpx;
+  white-space: nowrap;
+}
+
+.tab {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  height: 62rpx;
+  padding: 0 32rpx;
+  margin-right: 14rpx;
+  font-size: 25rpx;
+  color: var(--text-2);
+  background: #ffffff;
+  border-radius: 999rpx;
+  transition: all 0.2s ease;
+}
+
+.tab--active {
+  color: #ffffff;
+  font-weight: 600;
+  background: linear-gradient(135deg, #2b4acb, #5b7cfa);
+  box-shadow: 0 10rpx 22rpx rgba(43, 74, 203, 0.24);
+}
+
+.tab-dot {
+  width: 10rpx;
+  height: 10rpx;
+  margin-left: 8rpx;
+  background: #f04438;
+  border-radius: 50%;
+}
+
+.list {
+  margin-top: 24rpx;
+}
+
+.course-card {
+  margin-bottom: 24rpx;
+  overflow: hidden;
+  background: #ffffff;
+  border-radius: 28rpx;
+  box-shadow: 0 8rpx 28rpx rgba(26, 34, 51, 0.06);
+}
+
+.cover {
+  position: relative;
+  height: 240rpx;
+}
+
+.cover-img {
+  width: 100%;
+  height: 100%;
+}
+
+.cover-fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #2b4acb, #7a5af8);
+}
+
+.cover-initial {
+  font-size: 90rpx;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.28);
+}
+
+.status {
+  position: absolute;
+  top: 20rpx;
+  left: 20rpx;
+  padding: 6rpx 18rpx;
+  font-size: 20rpx;
+  font-weight: 600;
+  border-radius: 999rpx;
+}
+
+.course-status--upcoming {
+  color: #ffffff;
+  background: rgba(26, 34, 51, 0.55);
+}
+
+.course-status--live {
+  color: #ffffff;
+  background: #f04438;
+}
+
+.course-status--ended {
+  color: #5b6475;
+  background: rgba(255, 255, 255, 0.86);
+}
+
+.platform {
+  position: absolute;
+  right: 20rpx;
+  bottom: 20rpx;
+  padding: 4rpx 16rpx;
+  font-size: 20rpx;
+  color: #ffffff;
+  background: rgba(26, 34, 51, 0.5);
+  border-radius: 999rpx;
+}
+
+.body {
+  padding: 26rpx 28rpx 28rpx;
+}
+
+.title {
+  display: block;
+  font-size: 32rpx;
+  font-weight: 700;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.meta {
+  display: block;
+  margin-top: 10rpx;
+  font-size: 23rpx;
+  color: var(--text-3);
+}
+
+.quota {
+  display: flex;
+  align-items: center;
+  margin-top: 20rpx;
+}
+
+.quota-track {
+  flex: 1;
+  height: 10rpx;
+  overflow: hidden;
+  background: #eef1f6;
+  border-radius: 999rpx;
+}
+
+.quota-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #2b4acb, #7a5af8);
+  border-radius: 999rpx;
+}
+
+.quota-text {
+  margin-left: 16rpx;
+  font-size: 21rpx;
+  color: var(--text-3);
+}
+
+.foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 22rpx;
+}
+
+.remaining {
+  font-size: 22rpx;
+  color: var(--accent);
+}
+
+.enroll {
+  padding: 14rpx 40rpx;
+  font-size: 25rpx;
+  font-weight: 600;
+  color: #ffffff;
+  background: linear-gradient(135deg, #2b4acb, #5b7cfa);
+  border-radius: 999rpx;
+}
+
+.enroll--done {
+  color: var(--success);
+  background: #ecfdf3;
+}
+
+.enroll--disabled {
+  color: var(--text-3);
+  background: #f2f4f7;
+}
+
+.loading {
+  padding: 60rpx 0;
+  text-align: center;
+  font-size: 24rpx;
+  color: var(--text-3);
+}

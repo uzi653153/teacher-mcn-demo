@@ -1,0 +1,103 @@
+<!--login.wxml-->
+<view class="page">
+  <view class="hero">
+    <view class="hero-glow"></view>
+    <text class="hero-title">有因有果</text>
+    <text class="hero-sub">做了才会有，而不是有了才去做</text>
+  </view>
+
+  <view class="card form-card">
+    <view class="tabs">
+      <view
+        class="tab {{mode === 'login' ? 'tab--active' : ''}}"
+        data-mode="login"
+        bindtap="onSwitch"
+      >登录</view>
+      <view
+        class="tab {{mode === 'register' ? 'tab--active' : ''}}"
+        data-mode="register"
+        bindtap="onSwitch"
+      >注册</view>
+    </view>
+
+    <view class="field">
+      <text class="label">用户名</text>
+      <input
+        class="input"
+        value="{{username}}"
+        placeholder="3-20 位字母、数字或下划线"
+        placeholder-class="ph"
+        maxlength="20"
+        bindinput="onUsernameInput"
+      />
+    </view>
+
+    <view class="field">
+      <text class="label">密码</text>
+      <input
+        class="input"
+        password
+        value="{{password}}"
+        placeholder="6-32 个字符"
+        placeholder-class="ph"
+        maxlength="32"
+        bindinput="onPasswordInput"
+      />
+    </view>
+
+    <view class="field" wx:if="{{mode === 'register'}}">
+      <text class="label">昵称（选填）</text>
+      <input
+        class="input"
+        value="{{nickname}}"
+        placeholder="不填则使用用户名"
+        placeholder-class="ph"
+        maxlength="20"
+        bindinput="onNicknameInput"
+      />
+    </view>
+
+    <text class="error" wx:if="{{error}}">{{error}}</text>
+
+    <button
+      class="btn-primary submit-btn"
+      disabled="{{submitting}}"
+      hover-class="btn-primary--hover"
+      bindtap="onSubmit"
+    >
+      {{submitting ? '处理中...' : (mode === 'login' ? '登录' : '注册并登录')}}
+    </button>
+
+    <view class="divider">
+      <text class="divider-text">或</text>
+    </view>
+
+    <button
+      class="btn-wx"
+      disabled="{{submitting || wxLoading}}"
+      hover-class="btn-wx--hover"
+      bindtap="onWxLogin"
+    >{{wxLoading ? '微信登录中...' : '微信一键登录'}}</button>
+    <text class="wx-tip">首次使用将自动创建账号，无需注册</text>
+
+    <view class="demo">
+      <text class="demo-title">演示账号（点击填充）</text>
+      <view class="demo-row">
+        <text
+          class="demo-item"
+          data-username="student"
+          data-password="student123"
+          bindtap="onUseDemo"
+        >学员 student / student123</text>
+        <text
+          class="demo-item demo-item--admin"
+          data-username="admin"
+          data-password="admin123"
+          bindtap="onUseDemo"
+        >管理员 admin / admin123</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="tips">登录后可跨设备同步收藏与预约，管理员还可处理预约状态。</view>
+</view>

@@ -1,0 +1,85 @@
+<view class="page" wx:if="{{course}}">
+  <view class="hero">
+    <view class="hero-glow hero-glow--1"></view>
+    <view class="hero-glow hero-glow--2"></view>
+
+    <view class="hero-top">
+      <view class="status {{course.statusClass}}">{{course.statusText}}</view>
+      <text class="platform">{{course.platform}}</text>
+    </view>
+
+    <text class="hero-title">{{course.title}}</text>
+    <text class="hero-meta">{{course.teacherName}} · {{course.durationMin}} 分钟</text>
+
+    <view class="facts">
+      <view class="fact">
+        <text class="fact-value">{{course.timeText}}</text>
+        <text class="fact-label">开播时间</text>
+      </view>
+      <view class="fact-line"></view>
+      <view class="fact">
+        <text class="fact-value">{{course.quotaText}}</text>
+        <text class="fact-label">已报名 / 名额</text>
+      </view>
+      <view class="fact-line"></view>
+      <view class="fact">
+        <text class="fact-value">{{course.remaining}}</text>
+        <text class="fact-label">剩余名额</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="progress-card">
+    <view class="progress-head">
+      <text class="progress-title">报名进度</text>
+      <text class="progress-percent">{{course.progress}}%</text>
+    </view>
+    <view class="progress-track">
+      <view class="progress-bar" style="width: {{course.progress}}%"></view>
+    </view>
+  </view>
+
+  <view class="card teacher-card" bindtap="onTeacher">
+    <view class="teacher-avatar">{{course.teacherInitial}}</view>
+    <view class="teacher-info">
+      <text class="teacher-name">{{course.teacherName}}</text>
+      <text class="teacher-sub">点击查看名师主页</text>
+    </view>
+    <text class="teacher-arrow">›</text>
+  </view>
+
+  <view class="card section">
+    <text class="section-title">课程介绍</text>
+    <text class="intro">{{course.intro || '名师直播公开课，报名后可收到开播提醒。'}}</text>
+  </view>
+
+  <view class="card section">
+    <text class="section-title">观看说明</text>
+    <view class="tip-line">· 开播前 10 分钟会通过消息中心提醒</view>
+    <view class="tip-line">· 直播平台：{{course.platform}}，请提前关注老师账号</view>
+    <view class="tip-line">· 名额有限，取消报名后名额立即释放</view>
+  </view>
+
+  <view class="more" bindtap="onAllCourses">查看全部直播课 ›</view>
+
+  <view class="action-bar">
+    <view
+      class="action-btn {{course.enrolledByMe ? 'action-btn--cancel' : ''}} {{course.canEnroll ? '' : 'action-btn--disabled'}}"
+      bindtap="onAction"
+    >
+      <text wx:if="{{submitting}}">处理中...</text>
+      <text wx:elif="{{course.enrolledByMe}}">已报名 · 取消报名</text>
+      <text wx:else>{{course.actionText}}</text>
+    </view>
+  </view>
+</view>
+
+<view class="loading" wx:if="{{loading && !course}}">加载中...</view>
+
+<empty-state
+  wx:if="{{error}}"
+  title="课程加载失败"
+  desc="{{error}}"
+  action-text="重新加载"
+  bindaction="onRetry"
+/>

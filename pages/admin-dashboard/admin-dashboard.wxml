@@ -1,0 +1,87 @@
+<view class="page" wx:if="{{isAdmin}}">
+  <view class="head">
+    <text class="head-title">运营数据看板</text>
+    <text class="head-sub">实时掌握预约、用户与名师热度</text>
+  </view>
+
+  <view class="stats" wx:if="{{stats}}">
+    <view class="stat stat--brand">
+      <text class="stat-value">{{stats.bookings.today}}</text>
+      <text class="stat-label">今日预约</text>
+    </view>
+    <view class="stat stat--warn">
+      <text class="stat-value">{{stats.bookings.pending}}</text>
+      <text class="stat-label">待联系</text>
+    </view>
+    <view class="stat stat--green">
+      <text class="stat-value">{{stats.users}}</text>
+      <text class="stat-label">用户总数</text>
+    </view>
+    <view class="stat stat--purple">
+      <text class="stat-value">{{stats.favorites}}</text>
+      <text class="stat-label">收藏总数</text>
+    </view>
+  </view>
+
+  <view class="block" wx:if="{{stats}}">
+    <view class="block-head">
+      <text class="block-title">近 7 天预约趋势</text>
+      <text class="block-extra">共 {{stats.bookings.total}} 条预约</text>
+    </view>
+    <view class="chart">
+      <view class="bar-col" wx:for="{{trend}}" wx:key="date">
+        <text class="bar-count">{{item.count}}</text>
+        <view class="bar-track">
+          <view class="bar {{item.isToday ? 'bar--today' : ''}}" style="height: {{item.height}}%"></view>
+        </view>
+        <text class="bar-label {{item.isToday ? 'bar-label--today' : ''}}">{{item.label}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="block" wx:if="{{stats}}">
+    <view class="block-head">
+      <text class="block-title">名师大 V 热度 Top 5</text>
+      <text class="block-extra">上架 {{stats.teachers.active}} / {{stats.teachers.total}}</text>
+    </view>
+    <view class="rank" wx:for="{{topTeachers}}" wx:key="id">
+      <view class="rank-no rank-no--{{item.rank}}">{{item.rank}}</view>
+      <view class="rank-info">
+        <text class="rank-name">{{item.name}}</text>
+        <text class="rank-sub">{{item.stage}} · {{item.subject}}</text>
+      </view>
+      <text class="rank-fans">{{item.fansText}} 粉丝</text>
+    </view>
+  </view>
+
+  <view class="quick">
+    <view class="quick-item" bindtap="onBookings">
+      <view class="quick-icon quick-icon--brand">约</view>
+      <text class="quick-text">预约管理</text>
+    </view>
+    <view class="quick-item" bindtap="onTeachers">
+      <view class="quick-icon quick-icon--purple">师</view>
+      <text class="quick-text">名师管理</text>
+    </view>
+    <view class="quick-item" bindtap="onCourses">
+      <view class="quick-icon quick-icon--green">课</view>
+      <text class="quick-text">直播课程</text>
+    </view>
+  </view>
+
+  <empty-state
+    wx:if="{{error}}"
+    title="看板加载失败"
+    desc="{{error}}"
+    action-text="重新加载"
+    bindaction="onRetry"
+  />
+</view>
+
+<empty-state
+  wx:if="{{!isAdmin}}"
+  title="仅管理员可见"
+  desc="请使用管理员账号登录后查看数据看板"
+  action-text="返回首页"
+  bindaction="onBackHome"
+/>

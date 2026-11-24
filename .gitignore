@@ -1,0 +1,10 @@
+node_modules/
+server/.env
+server/logs/
+server/uploads/
+project.private.config.json
+.screenshots/
+*.log
+.DS_Store
+__pycache__/
+crawler/output/

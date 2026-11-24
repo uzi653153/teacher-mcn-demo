@@ -1,0 +1,61 @@
+<view class="page">
+  <view class="summary">
+    <view class="summary-item">
+      <text class="summary-value">{{stats.total}}</text>
+      <text class="summary-label">已报名</text>
+    </view>
+    <view class="summary-line"></view>
+    <view class="summary-item">
+      <text class="summary-value">{{stats.upcoming}}</text>
+      <text class="summary-label">待开播 / 直播中</text>
+    </view>
+    <view class="summary-line"></view>
+    <view class="summary-item">
+      <text class="summary-value">{{stats.ended}}</text>
+      <text class="summary-label">已结束</text>
+    </view>
+  </view>
+
+  <view class="list" wx:if="{{!error}}">
+    <view
+      class="item"
+      wx:for="{{list}}"
+      wx:key="id"
+      data-id="{{item.id}}"
+      bindtap="onDetail"
+    >
+      <view class="item-top">
+        <view class="status {{item.statusClass}}">{{item.statusText}}</view>
+        <text class="time">{{item.timeText}}</text>
+      </view>
+      <text class="title">{{item.title}}</text>
+      <text class="meta">{{item.teacherName}} · {{item.durationMin}} 分钟 · {{item.platform}}</text>
+      <view class="item-foot">
+        <text class="quota">{{item.quotaText}} 人已报名</text>
+        <view
+          wx:if="{{item.status !== 2}}"
+          class="cancel"
+          data-id="{{item.id}}"
+          catchtap="onCancel"
+        >取消报名</view>
+        <text wx:else class="ended-tip">课程已结束</text>
+      </view>
+    </view>
+    <view class="loading" wx:if="{{loading}}">加载中...</view>
+  </view>
+
+  <empty-state
+    wx:if="{{error}}"
+    title="加载失败"
+    desc="{{error}}"
+    action-text="重新加载"
+    bindaction="onRetry"
+  />
+  <empty-state
+    wx:elif="{{!loading && list.length === 0}}"
+    title="还没有报名课程"
+    desc="名师直播公开课限时免费，去看看有没有适合的"
+    action-text="浏览直播课"
+    bindaction="onBrowse"
+  />
+</view>

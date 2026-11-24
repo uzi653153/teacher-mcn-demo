@@ -1,0 +1,72 @@
+<!--admin-bookings.wxml-->
+<view class="page">
+  <view class="head">
+    <view class="head-main">
+      <text class="head-title">预约管理</text>
+      <text class="head-sub">处理学员预约：待联系 → 已联系</text>
+    </view>
+    <text class="head-logout" bindtap="onLogout">退出登录</text>
+  </view>
+
+  <view class="tabs">
+    <view
+      class="tab {{filter === item.value ? 'tab--active' : ''}}"
+      wx:for="{{tabs}}"
+      wx:key="value"
+      data-value="{{item.value}}"
+      bindtap="onFilter"
+    >{{item.label}}</view>
+  </view>
+
+  <view class="loading" wx:if="{{loading}}">加载中...</view>
+
+  <empty-state
+    wx:if="{{error}}"
+    title="无法加载预约"
+    desc="{{error}}"
+    action-text="重新加载"
+    bindaction="onRetry"
+  />
+
+  <block wx:elif="{{!loading && list.length}}">
+    <view class="card" wx:for="{{list}}" wx:key="id">
+      <view class="card-top">
+        <view class="teacher">
+          <view class="avatar">{{item.initial}}</view>
+          <view class="teacher-info">
+            <text class="teacher-name">{{item.teacherName}}</text>
+            <text class="teacher-meta">{{item.stage}} · {{item.timeText}}</text>
+          </view>
+        </view>
+        <text class="status {{item.statusClass}}">{{item.statusText}}</text>
+      </view>
+
+      <view class="detail">
+        <text class="line">学员：{{item.name}}</text>
+        <text class="line">手机：{{item.phone}}</text>
+        <text class="line" wx:if="{{item.remark}}">备注：{{item.remark}}</text>
+      </view>
+
+      <view class="actions" wx:if="{{item.canAct}}">
+        <view
+          class="action action--ghost"
+          data-id="{{item.id}}"
+          bindtap="onCancel"
+        >取消预约</view>
+        <view
+          class="action action--primary {{actingId === item.id ? 'action--busy' : ''}}"
+          data-id="{{item.id}}"
+          bindtap="onContact"
+        >{{actingId === item.id ? '处理中...' : '标记已联系'}}</view>
+      </view>
+    </view>
+  </block>
+
+  <empty-state
+    wx:elif="{{!loading && list.length === 0}}"
+    title="暂无预约"
+    desc="当前筛选条件下没有预约记录"
+    action-text="查看全部"
+    bindaction="onReset"
+  />
+</view>

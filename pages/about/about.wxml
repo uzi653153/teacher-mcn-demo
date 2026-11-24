@@ -1,0 +1,74 @@
+<!--about.wxml-->
+<view class="page">
+  <view class="hero">
+    <view class="hero-glow hero-glow--1"></view>
+    <view class="hero-glow hero-glow--2"></view>
+
+    <text class="hero-badge">杭州有因有果科技有限公司</text>
+    <text class="hero-title">有因有果</text>
+    <text class="hero-sub">K12 教育 MCN 孵化 · 让好老师被更多人看见</text>
+
+    <view class="quote">
+      <text class="quote-mark">“</text>
+      <text class="quote-text">做了才会有，而不是有了才去做</text>
+    </view>
+  </view>
+
+  <view class="stats">
+    <view class="stat" wx:for="{{stats}}" wx:key="label">
+      <text class="stat-value">{{item.value}}</text>
+      <text class="stat-label">{{item.label}}</text>
+    </view>
+  </view>
+
+  <view class="card block">
+    <text class="block-title">公司简介</text>
+    <text class="paragraph">
+      杭州有因有果科技有限公司成立于 2021 年，深耕 K12 教育 MCN 孵化赛道，是直播教育领域极具影响力的创新企业。
+    </text>
+    <text class="paragraph">
+      在创始人一壶觞的带领下，公司打造了一支由 rika 黄老师、汤圆老师、可乐老师、清华飞姐、北大彭高畅等行业顶尖专家组成的团队，成功孵化出多个现象级教育 IP。
+    </text>
+  </view>
+
+  <view class="block">
+    <text class="block-title block-title--standalone">核心业务</text>
+    <view class="business card" wx:for="{{businesses}}" wx:key="title">
+      <view class="business-icon">{{item.icon}}</view>
+      <view class="business-body">
+        <text class="business-title">{{item.title}}</text>
+        <text class="business-desc">{{item.desc}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="card block">
+    <text class="block-title">精英团队</text>
+    <text class="paragraph">
+      公司旗下汇聚行业顶尖教育专家，覆盖早教、小初、高中全学段，全网粉丝累计超过 6000w。
+    </text>
+    <view class="team">
+      <text class="team-chip" wx:for="{{teamNames}}" wx:key="*this">{{item}}</text>
+    </view>
+  </view>
+
+  <view class="block">
+    <text class="block-title block-title--standalone">团队文化</text>
+    <view class="value card" wx:for="{{values}}" wx:key="title">
+      <text class="value-title">{{item.title}}</text>
+      <text class="value-desc">{{item.desc}}</text>
+    </view>
+  </view>
+
+  <view class="belief">
+    <text class="belief-label">企业文化核心理念</text>
+    <text class="belief-text">因果是什么？是做了才会有，而不是有了才去做。</text>
+    <text class="belief-sub">
+      我们鼓励每一位成员立足当下，用行动创造价值，用坚持收获结果。每一份努力都不会被辜负，每一份梦想都有实现的可能。
+    </text>
+  </view>
+
+  <text class="footnote">
+    本小程序为面试演示作品，公司信息整理自公开介绍，名师数据仅用于功能展示。
+  </text>
+</view>

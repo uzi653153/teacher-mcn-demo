@@ -1,0 +1,149 @@
+<!--index.wxml-->
+<view class="page">
+  <view class="hero">
+    <view class="hero-glow hero-glow--1"></view>
+    <view class="hero-glow hero-glow--2"></view>
+
+    <view class="hero-top">
+      <text class="hero-badge">K12 教育 MCN</text>
+      <text class="hero-slogan">做了才会有</text>
+    </view>
+
+    <text class="hero-title">遇见更好的老师</text>
+    <text class="hero-sub">早教 · 小初 · 高中，全学段名师在线</text>
+
+    <view class="hero-stats">
+      <view class="hero-stat">
+        <text class="hero-stat-value">{{summary.teacherCount}}</text>
+        <text class="hero-stat-label">签约名师</text>
+      </view>
+      <view class="hero-stat-line"></view>
+      <view class="hero-stat">
+        <text class="hero-stat-value">{{summaryFansText}}</text>
+        <text class="hero-stat-label">全网粉丝</text>
+      </view>
+      <view class="hero-stat-line"></view>
+      <view class="hero-stat">
+        <text class="hero-stat-value">200+</text>
+        <text class="hero-stat-label">团队规模</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="search-wrap">
+    <view class="search">
+      <view class="search-icon"></view>
+      <input
+        class="search-input"
+        value="{{keyword}}"
+        placeholder="搜索老师 / 学科 / 标签"
+        placeholder-class="search-placeholder"
+        confirm-type="search"
+        bindinput="onKeywordInput"
+        bindconfirm="onSearchConfirm"
+      />
+      <view wx:if="{{keyword}}" class="search-clear" bindtap="onClearKeyword">×</view>
+    </view>
+  </view>
+
+  <view class="hot" wx:if="{{!keyword}}">
+    <view class="hot-row" wx:if="{{historyKeywords.length}}">
+      <text class="hot-label">最近</text>
+      <view class="hot-tags">
+        <text
+          wx:for="{{historyKeywords}}"
+          wx:key="*this"
+          class="hot-tag hot-tag--history"
+          data-keyword="{{item}}"
+          bindtap="onHotTap"
+        >{{item}}</text>
+      </view>
+    </view>
+    <view class="hot-row" wx:if="{{hotKeywords.length}}">
+      <text class="hot-label">热搜</text>
+      <view class="hot-tags">
+        <text
+          wx:for="{{hotKeywords}}"
+          wx:key="keyword"
+          class="hot-tag"
+          data-keyword="{{item.keyword}}"
+          bindtap="onHotTap"
+        >{{item.keyword}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="live-card" wx:if="{{liveCourse}}">
+    <view class="live-main" bindtap="onLiveCourse">
+      <view class="live-head">
+        <view class="live-badge {{liveCourse.status === 1 ? 'live-badge--live' : ''}}">
+          <view class="live-dot"></view>
+          <text>{{liveCourse.statusText}}</text>
+        </view>
+        <text class="live-time">{{liveCourse.timeText}}</text>
+      </view>
+      <text class="live-title">{{liveCourse.title}}</text>
+      <text class="live-meta">{{liveCourse.teacherName}} · {{liveCourse.platform}} · 已报名 {{liveCourse.quotaText}}</text>
+    </view>
+    <view class="live-all" catchtap="onAllCourses">
+      <text>全部课程</text>
+      <text class="live-arrow">›</text>
+    </view>
+  </view>
+
+  <scroll-view class="tabs" scroll-x enable-flex show-scrollbar="{{false}}">
+    <view
+      wx:for="{{categories}}"
+      wx:key="*this"
+      class="tab {{activeIndex === index ? 'tab--active' : ''}}"
+      data-index="{{index}}"
+      bindtap="onTabChange"
+    >{{item}}</view>
+  </scroll-view>
+
+  <view class="list-head">
+    <text class="list-title">{{keyword ? '搜索结果' : '名师阵容'}}</text>
+    <text class="list-count" wx:if="{{!loading && !error}}">共 {{total}} 位</text>
+  </view>
+
+  <view class="list" wx:if="{{!error}}">
+    <teacher-card
+      wx:for="{{teachers}}"
+      wx:key="id"
+      teacher="{{item}}"
+      bindselect="onTeacherSelect"
+    />
+
+    <block wx:if="{{loading && teachers.length === 0}}">
+      <view class="skeleton" wx:for="{{[1, 2, 3, 4]}}" wx:key="*this">
+        <view class="skeleton-avatar"></view>
+        <view class="skeleton-body">
+          <view class="skeleton-line skeleton-line--lg"></view>
+          <view class="skeleton-line"></view>
+          <view class="skeleton-line skeleton-line--sm"></view>
+        </view>
+      </view>
+    </block>
+
+    <view class="load-more" wx:if="{{teachers.length > 0}}">
+      <text wx:if="{{loadingMore}}">加载中...</text>
+      <text wx:elif="{{hasMore}}">上拉加载更多</text>
+      <text wx:else>已经到底啦</text>
+    </view>
+  </view>
+
+  <empty-state
+    wx:if="{{error}}"
+    title="加载失败"
+    desc="{{error}}"
+    action-text="重新加载"
+    bindaction="onRetry"
+  />
+  <empty-state
+    wx:elif="{{!loading && teachers.length === 0}}"
+    title="{{keyword ? '没有找到相关名师' : '该学段暂无名师'}}"
+    desc="{{keyword ? '换个关键词试试，或看看全部名师' : '换个学段看看吧'}}"
+    action-text="看看全部"
+    bindaction="onExploreAll"
+  />
+</view>

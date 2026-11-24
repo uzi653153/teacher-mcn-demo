@@ -1,0 +1,8 @@
+<view class="empty">
+  <view class="empty-art"></view>
+  <text class="empty-title">{{title}}</text>
+  <text class="empty-desc" wx:if="{{desc}}">{{desc}}</text>
+  <view class="empty-btn" wx:if="{{actionText}}" hover-class="empty-btn--hover" bindtap="onAction">
+    {{actionText}}
+  </view>
+</view>

@@ -1,0 +1,116 @@
+.page {
+  padding: 0 24rpx 60rpx;
+}
+
+.head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding: 34rpx 8rpx 22rpx;
+}
+
+.head-title {
+  display: block;
+  font-size: 40rpx;
+  font-weight: 700;
+}
+
+.head-sub {
+  display: block;
+  margin-top: 8rpx;
+  font-size: 23rpx;
+  color: var(--text-3);
+}
+
+.read-all {
+  padding: 10rpx 24rpx;
+  font-size: 23rpx;
+  color: var(--brand);
+  background: var(--brand-light);
+  border-radius: 999rpx;
+}
+
+.read-all--disabled {
+  color: var(--text-3);
+  background: #eef1f6;
+}
+
+.item {
+  position: relative;
+  margin-bottom: 20rpx;
+  padding: 26rpx 28rpx;
+  background: #ffffff;
+  border-radius: 24rpx;
+  box-shadow: 0 8rpx 24rpx rgba(26, 34, 51, 0.05);
+}
+
+.item--read {
+  opacity: 0.72;
+  box-shadow: none;
+}
+
+.dot {
+  position: absolute;
+  top: 30rpx;
+  right: 28rpx;
+  width: 14rpx;
+  height: 14rpx;
+  background: #f04438;
+  border-radius: 50%;
+}
+
+.item-top {
+  display: flex;
+  align-items: center;
+}
+
+.type {
+  padding: 4rpx 16rpx;
+  font-size: 20rpx;
+  border-radius: 999rpx;
+}
+
+.type--booking {
+  color: #b54708;
+  background: #fffaeb;
+}
+
+.type--course {
+  color: var(--brand);
+  background: var(--brand-light);
+}
+
+.type--system {
+  color: #026aa2;
+  background: #f0f9ff;
+}
+
+.time {
+  margin-left: 16rpx;
+  font-size: 21rpx;
+  color: var(--text-3);
+}
+
+.title {
+  display: block;
+  margin-top: 16rpx;
+  padding-right: 28rpx;
+  font-size: 29rpx;
+  font-weight: 600;
+}
+
+.content {
+  display: block;
+  margin-top: 10rpx;
+  font-size: 24rpx;
+  line-height: 1.7;
+  color: var(--text-2);
+}
+
+.loading,
+.end {
+  padding: 34rpx 0;
+  text-align: center;
+  font-size: 22rpx;
+  color: var(--text-3);
+}

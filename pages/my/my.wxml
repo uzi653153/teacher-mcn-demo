@@ -1,0 +1,136 @@
+<!--my.wxml-->
+<view class="page">
+  <view class="profile">
+    <view class="profile-glow profile-glow--1"></view>
+    <view class="profile-glow profile-glow--2"></view>
+
+    <view class="profile-main">
+      <view class="avatar">{{initial}}</view>
+      <view class="profile-info">
+        <view class="nick-row">
+          <text class="nick">{{nickname}}</text>
+          <text class="edit" wx:if="{{!loggedIn}}" bindtap="onEditNickname">编辑</text>
+          <text class="login-link" wx:if="{{!loggedIn}}" bindtap="onLogin">登录 / 注册</text>
+          <text class="logout-chip" wx:if="{{loggedIn}}" bindtap="onLogout">退出登录</text>
+        </view>
+        <text class="profile-sub">{{profileSub}}</text>
+      </view>
+    </view>
+
+    <view class="profile-stats">
+      <view class="stat">
+        <text class="stat-value">{{stats.total}}</text>
+        <text class="stat-label">预约总数</text>
+      </view>
+      <view class="stat-line"></view>
+      <view class="stat">
+        <text class="stat-value">{{stats.pending}}</text>
+        <text class="stat-label">待联系</text>
+      </view>
+      <view class="stat-line"></view>
+      <view class="stat">
+        <text class="stat-value">{{favCount}}</text>
+        <text class="stat-label">我的收藏</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="quick">
+    <view class="quick-item" hover-class="quick-item--hover" bindtap="onMyCourses">
+      <view class="quick-icon quick-icon--brand">课</view>
+      <text class="quick-text">我的课程</text>
+    </view>
+    <view class="quick-item" hover-class="quick-item--hover" bindtap="onMessages">
+      <view class="quick-icon quick-icon--accent">信</view>
+      <text class="quick-text">消息中心</text>
+      <view class="quick-badge" wx:if="{{unread > 0}}">{{unread > 99 ? '99+' : unread}}</view>
+    </view>
+    <view class="quick-item" hover-class="quick-item--hover" bindtap="onFavorites">
+      <view class="quick-icon quick-icon--danger">藏</view>
+      <text class="quick-text">我的收藏</text>
+    </view>
+    <view class="quick-item" hover-class="quick-item--hover" bindtap="onBook">
+      <view class="quick-icon quick-icon--brand">约</view>
+      <text class="quick-text">预约名师</text>
+    </view>
+    <view
+      class="quick-item"
+      wx:if="{{isAdmin}}"
+      hover-class="quick-item--hover"
+      bindtap="onDashboard"
+    >
+      <view class="quick-icon quick-icon--admin">数</view>
+      <text class="quick-text">数据看板</text>
+    </view>
+    <view
+      class="quick-item"
+      wx:if="{{isAdmin}}"
+      hover-class="quick-item--hover"
+      bindtap="onTeacherManage"
+    >
+      <view class="quick-icon quick-icon--admin">师</view>
+      <text class="quick-text">名师管理</text>
+    </view>
+    <view
+      class="quick-item"
+      wx:if="{{isAdmin}}"
+      hover-class="quick-item--hover"
+      bindtap="onAdmin"
+    >
+      <view class="quick-icon quick-icon--admin">管</view>
+      <text class="quick-text">预约管理</text>
+    </view>
+    <view class="quick-item" hover-class="quick-item--hover" bindtap="onAbout">
+      <view class="quick-icon quick-icon--accent">企</view>
+      <text class="quick-text">关于我们</text>
+    </view>
+  </view>
+
+  <view class="section-head">
+    <text class="section-title">我的预约</text>
+    <text class="section-count" wx:if="{{!loading && !error}}">{{stats.total}} 条</text>
+  </view>
+
+  <block wx:if="{{!loading && !error && bookings.length}}">
+    <view class="booking-card" wx:for="{{bookings}}" wx:key="id">
+      <view class="booking-top">
+        <view class="booking-teacher">
+          <view class="booking-avatar">{{item.teacherInitial}}</view>
+          <view class="booking-info">
+            <text class="booking-name">{{item.teacherName}}</text>
+            <text class="booking-meta">{{item.stage}} · {{item.timeText}}</text>
+          </view>
+        </view>
+        <text class="status {{item.statusClass}}">{{item.statusText}}</text>
+      </view>
+
+      <view class="booking-detail">
+        <text class="booking-line">学生：{{item.name}}（{{item.phone}}）</text>
+        <text class="booking-line" wx:if="{{item.remark}}">备注：{{item.remark}}</text>
+      </view>
+
+      <view class="booking-actions" wx:if="{{item.canCancel}}">
+        <view class="cancel-btn" data-id="{{item.id}}" bindtap="onCancel">取消预约</view>
+      </view>
+    </view>
+  </block>
+
+  <view class="loading" wx:if="{{loading}}">加载中...</view>
+
+  <empty-state
+    wx:if="{{error}}"
+    title="预约记录加载失败"
+    desc="{{error}}"
+    action-text="重新加载"
+    bindaction="onRetry"
+  />
+  <empty-state
+    wx:elif="{{!loading && bookings.length === 0}}"
+    title="还没有预约记录"
+    desc="挑一位喜欢的老师，开启专属咨询"
+    action-text="去预约名师"
+    bindaction="onBook"
+  />
+
+  <view class="logout" wx:if="{{loggedIn}}" bindtap="onLogout">退出登录</view>
+</view>

@@ -1,0 +1,111 @@
+<!--detail.wxml-->
+<view class="page">
+  <block wx:if="{{loading}}">
+    <view class="hero hero--skeleton">
+      <view class="sk-avatar"></view>
+      <view class="sk-lines">
+        <view class="sk-line sk-line--lg"></view>
+        <view class="sk-line"></view>
+        <view class="sk-line sk-line--sm"></view>
+      </view>
+    </view>
+    <view class="body">
+      <view class="card block">
+        <view class="sk-line sk-line--lg"></view>
+        <view class="sk-line"></view>
+        <view class="sk-line"></view>
+      </view>
+    </view>
+  </block>
+
+  <empty-state
+    wx:elif="{{error}}"
+    title="加载失败"
+    desc="{{error}}"
+    action-text="重新加载"
+    bindaction="onRetry"
+  />
+
+  <block wx:else>
+    <view class="hero">
+      <view class="hero-main">
+        <view class="avatar" style="background: {{teacher.avatarColor}}">
+          <image
+            wx:if="{{teacher.avatar}}"
+            class="avatar-img"
+            src="{{teacher.avatar}}"
+            mode="aspectFill"
+          />
+          <text wx:else class="avatar-text">{{teacher.initial}}</text>
+        </view>
+
+        <view class="hero-info">
+          <view class="name-row">
+            <text class="name">{{teacher.name}}</text>
+            <text class="stage-badge">{{teacher.stage}}</text>
+          </view>
+          <text class="title">{{teacher.title}}</text>
+          <view class="tags">
+            <text class="tag" wx:for="{{teacher.tags}}" wx:key="*this">{{item}}</text>
+          </view>
+        </view>
+      </view>
+
+      <view class="stats">
+        <view class="stat">
+          <text class="stat-value">{{teacher.fansText}}</text>
+          <text class="stat-label">全网粉丝</text>
+        </view>
+        <view class="stat-line"></view>
+        <view class="stat">
+          <text class="stat-value">{{teacher.years}} 年</text>
+          <text class="stat-label">教学经验</text>
+        </view>
+        <view class="stat-line"></view>
+        <view class="stat">
+          <text class="stat-value">{{teacher.subject}}</text>
+          <text class="stat-label">擅长方向</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="body">
+      <view class="card block">
+        <text class="block-title">老师简介</text>
+        <text class="intro">{{teacher.intro}}</text>
+      </view>
+
+      <view class="card block">
+        <text class="block-title">教学亮点</text>
+        <view class="highlight" wx:for="{{teacher.highlights}}" wx:key="*this">
+          <view class="highlight-dot"></view>
+          <text class="highlight-text">{{item}}</text>
+        </view>
+      </view>
+
+      <view class="card block" wx:if="{{teacher.courses.length}}">
+        <text class="block-title">代表课程</text>
+        <view class="course" wx:for="{{teacher.courses}}" wx:key="*this">
+          <text class="course-index">{{index + 1}}</text>
+          <text class="course-name">{{item}}</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="bottom-bar">
+      <view class="fav-btn" hover-class="fav-btn--hover" bindtap="onToggleFavorite">
+        <text class="fav-icon {{favorited ? 'fav-icon--on' : ''}}">
+          {{favorited ? '♥' : '♡'}}
+        </text>
+        <text class="fav-text">{{favorited ? '已收藏' : '收藏'}}</text>
+      </view>
+      <view class="bottom-info">
+        <text class="bottom-label">意向老师</text>
+        <text class="bottom-name">{{teacher.name}}</text>
+      </view>
+      <button class="book-btn" hover-class="book-btn--hover" bindtap="onBook">
+        预约咨询
+      </button>
+    </view>
+  </block>
+</view>

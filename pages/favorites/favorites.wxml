@@ -1,0 +1,94 @@
+<!--favorites.wxml-->
+<view class="page">
+  <block wx:if="{{loggedIn}}">
+    <view class="head">
+      <view>
+        <text class="head-title">我的收藏</text>
+        <text class="head-sub">勾选 2-3 位老师，查看多维对比</text>
+      </view>
+      <text class="head-count">{{list.length}} 位</text>
+    </view>
+
+    <view class="loading" wx:if="{{loading}}">加载中...</view>
+
+    <empty-state
+      wx:if="{{error}}"
+      title="收藏加载失败"
+      desc="{{error}}"
+      action-text="重新加载"
+      bindaction="onRetry"
+    />
+
+    <block wx:elif="{{!loading && list.length}}">
+      <view class="fav-card" wx:for="{{list}}" wx:key="id">
+        <view
+          class="check {{item.selected ? 'check--on' : ''}}"
+          data-id="{{item.id}}"
+          catchtap="onToggleSelect"
+        >
+          <text wx:if="{{item.selected}}">✓</text>
+        </view>
+
+        <view
+          class="fav-body"
+          hover-class="fav-body--hover"
+          data-id="{{item.id}}"
+          bindtap="onDetail"
+        >
+          <view class="fav-avatar" style="background: {{item.avatarColor}}">
+            <image
+              wx:if="{{item.avatar}}"
+              class="fav-avatar-img"
+              src="{{item.avatar}}"
+              mode="aspectFill"
+            />
+            <text wx:else class="fav-avatar-text">{{item.initial}}</text>
+          </view>
+
+          <view class="fav-info">
+            <view class="fav-top">
+              <text class="fav-name">{{item.name}}</text>
+              <text class="fav-fans">{{item.fansText}} 粉丝</text>
+            </view>
+            <text class="fav-title ellipsis">{{item.title}}</text>
+            <view class="fav-tags">
+              <text class="fav-tag" wx:for="{{item.tags}}" wx:key="*this">{{item}}</text>
+            </view>
+          </view>
+        </view>
+
+        <text class="remove" data-id="{{item.id}}" catchtap="onRemove">移除</text>
+      </view>
+    </block>
+
+    <empty-state
+      wx:elif="{{!loading && list.length === 0}}"
+      title="还没有收藏名师"
+      desc="在名师详情页点击收藏，就能在这里管理和对比"
+      action-text="去发现名师"
+      bindaction="onGoHome"
+    />
+
+    <view class="compare-bar" wx:if="{{!loading && list.length}}">
+      <view class="compare-info">
+        <text class="compare-title">对比清单</text>
+        <text class="compare-sub">已选 {{selectedCount}}/{{maxCompare}} 位</text>
+      </view>
+      <button
+        class="compare-btn {{selectedCount < 2 ? 'compare-btn--disabled' : ''}}"
+        hover-class="compare-btn--hover"
+        bindtap="onCompare"
+      >
+        开始对比
+      </button>
+    </view>
+  </block>
+
+  <empty-state
+    wx:else
+    title="登录后查看收藏"
+    desc="收藏的名师会跟随账号同步，随时管理、随时对比"
+    action-text="去登录 / 注册"
+    bindaction="onGoLogin"
+  />
+</view>

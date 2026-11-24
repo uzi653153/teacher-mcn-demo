@@ -1,0 +1,132 @@
+.page {
+  padding: 24rpx 24rpx 60rpx;
+}
+
+.summary {
+  display: flex;
+  align-items: center;
+  padding: 30rpx 0;
+  background: #ffffff;
+  border-radius: 26rpx;
+  box-shadow: 0 8rpx 24rpx rgba(26, 34, 51, 0.05);
+}
+
+.summary-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.summary-value {
+  font-size: 40rpx;
+  font-weight: 700;
+  color: var(--brand);
+}
+
+.summary-label {
+  margin-top: 6rpx;
+  font-size: 21rpx;
+  color: var(--text-3);
+}
+
+.summary-line {
+  width: 1rpx;
+  height: 52rpx;
+  background: var(--line);
+}
+
+.list {
+  margin-top: 22rpx;
+}
+
+.item {
+  margin-bottom: 22rpx;
+  padding: 26rpx 28rpx;
+  background: #ffffff;
+  border-radius: 26rpx;
+  box-shadow: 0 8rpx 24rpx rgba(26, 34, 51, 0.05);
+}
+
+.item-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.status {
+  padding: 4rpx 16rpx;
+  font-size: 20rpx;
+  border-radius: 999rpx;
+}
+
+.course-status--upcoming {
+  color: var(--brand);
+  background: var(--brand-light);
+}
+
+.course-status--live {
+  color: #ffffff;
+  background: #f04438;
+}
+
+.course-status--ended {
+  color: var(--text-3);
+  background: #f2f4f7;
+}
+
+.time {
+  font-size: 22rpx;
+  color: var(--text-3);
+}
+
+.title {
+  display: block;
+  margin-top: 16rpx;
+  font-size: 31rpx;
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.meta {
+  display: block;
+  margin-top: 8rpx;
+  font-size: 22rpx;
+  color: var(--text-3);
+}
+
+.item-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 22rpx;
+  padding-top: 20rpx;
+  border-top: 1rpx solid var(--line);
+}
+
+.quota {
+  font-size: 22rpx;
+  color: var(--text-3);
+}
+
+.cancel {
+  padding: 8rpx 26rpx;
+  font-size: 22rpx;
+  color: var(--danger);
+  background: #fef3f2;
+  border-radius: 999rpx;
+}
+
+.ended-tip {
+  font-size: 22rpx;
+  color: var(--text-3);
+}
+
+.loading {
+  padding: 50rpx 0;
+  text-align: center;
+  font-size: 24rpx;
+  color: var(--text-3);
+}

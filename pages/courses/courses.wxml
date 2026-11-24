@@ -1,0 +1,79 @@
+<view class="page">
+  <view class="head">
+    <view class="head-info">
+      <text class="head-title">名师直播公开课</text>
+      <text class="head-sub">限时免费 · 在线答疑 · 可回放</text>
+    </view>
+    <view class="mine-link" bindtap="onMine">我的报名 ›</view>
+  </view>
+
+  <scroll-view class="tabs" scroll-x enable-flex show-scrollbar="{{false}}">
+    <view
+      wx:for="{{tabs}}"
+      wx:key="key"
+      class="tab {{activeKey === item.key ? 'tab--active' : ''}}"
+      data-key="{{item.key}}"
+      bindtap="onTabChange"
+    >
+      {{item.label}}
+      <text wx:if="{{item.key === 'live' && summary.live}}" class="tab-dot"></text>
+    </view>
+  </scroll-view>
+
+  <view class="list" wx:if="{{!error}}">
+    <view
+      class="course-card"
+      wx:for="{{list}}"
+      wx:key="id"
+      data-id="{{item.id}}"
+      bindtap="onDetail"
+    >
+      <view class="cover">
+        <image wx:if="{{item.coverUrl}}" class="cover-img" src="{{item.coverUrl}}" mode="aspectFill" />
+        <view wx:else class="cover-fallback">
+          <text class="cover-initial">{{item.titleInitial}}</text>
+        </view>
+        <view class="status {{item.statusClass}}">{{item.statusText}}</view>
+        <view class="platform">{{item.platform}}</view>
+      </view>
+
+      <view class="body">
+        <text class="title">{{item.title}}</text>
+        <text class="meta">{{item.teacherName}} · {{item.timeText}} · {{item.durationMin}} 分钟</text>
+
+        <view class="quota">
+          <view class="quota-track">
+            <view class="quota-bar" style="width: {{item.progress}}%"></view>
+          </view>
+          <text class="quota-text">{{item.quotaText}}</text>
+        </view>
+
+        <view class="foot">
+          <text class="remaining">{{item.remaining > 0 ? '余 ' + item.remaining + ' 个名额' : '名额已满'}}</text>
+          <view
+            class="enroll {{item.enrolledByMe ? 'enroll--done' : ''}} {{item.canEnroll ? '' : 'enroll--disabled'}}"
+            data-id="{{item.id}}"
+            catchtap="onEnroll"
+          >{{item.actionText}}</view>
+        </view>
+      </view>
+    </view>
+
+    <view class="loading" wx:if="{{loading}}">加载中...</view>
+  </view>
+
+  <empty-state
+    wx:if="{{error}}"
+    title="课程加载失败"
+    desc="{{error}}"
+    action-text="重新加载"
+    bindaction="onRetry"
+  />
+  <empty-state
+    wx:elif="{{!loading && list.length === 0}}"
+    title="暂无相关课程"
+    desc="换个分类看看，或稍后再来"
+    action-text="查看全部课程"
+    bindaction="onRetry"
+  />
+</view>

@@ -1,0 +1,273 @@
+/**about.wxss**/
+.page {
+  padding: 0 24rpx 60rpx;
+}
+
+.hero {
+  position: relative;
+  margin: 0 -24rpx;
+  padding: 44rpx 48rpx 48rpx;
+  overflow: hidden;
+  color: #ffffff;
+  background: linear-gradient(140deg, #2b4acb 0%, #4b6bfb 58%, #7a5af8 100%);
+  border-radius: 0 0 48rpx 48rpx;
+}
+
+.hero-glow {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.hero-glow--1 {
+  top: -160rpx;
+  right: -110rpx;
+  width: 360rpx;
+  height: 360rpx;
+}
+
+.hero-glow--2 {
+  bottom: -150rpx;
+  left: -90rpx;
+  width: 280rpx;
+  height: 280rpx;
+}
+
+.hero-badge {
+  position: relative;
+  z-index: 1;
+  display: inline-block;
+  padding: 6rpx 20rpx;
+  font-size: 20rpx;
+  letter-spacing: 1rpx;
+  background: rgba(255, 255, 255, 0.18);
+  border-radius: 999rpx;
+}
+
+.hero-title {
+  position: relative;
+  z-index: 1;
+  display: block;
+  margin-top: 26rpx;
+  font-size: 58rpx;
+  font-weight: 700;
+  letter-spacing: 4rpx;
+}
+
+.hero-sub {
+  position: relative;
+  z-index: 1;
+  display: block;
+  margin-top: 12rpx;
+  font-size: 24rpx;
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.quote {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: flex-start;
+  margin-top: 36rpx;
+  padding: 24rpx 28rpx;
+  background: rgba(255, 255, 255, 0.14);
+  border-radius: 20rpx;
+}
+
+.quote-mark {
+  margin-right: 10rpx;
+  font-size: 40rpx;
+  line-height: 1;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.quote-text {
+  flex: 1;
+  font-size: 27rpx;
+  line-height: 1.6;
+  letter-spacing: 1rpx;
+}
+
+.stats {
+  display: flex;
+  margin-top: 28rpx;
+  padding: 28rpx 0;
+  background: #ffffff;
+  border-radius: 28rpx;
+  box-shadow: 0 8rpx 28rpx rgba(26, 34, 51, 0.06);
+}
+
+.stat {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.stat-value {
+  font-size: 30rpx;
+  font-weight: 700;
+  color: var(--brand);
+}
+
+.stat-label {
+  margin-top: 6rpx;
+  font-size: 20rpx;
+  color: var(--text-3);
+}
+
+.block {
+  margin-top: 28rpx;
+}
+
+.card.block {
+  padding: 32rpx;
+  box-shadow: 0 8rpx 28rpx rgba(26, 34, 51, 0.06);
+}
+
+.block-title {
+  display: block;
+  margin-bottom: 20rpx;
+  font-size: 32rpx;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.block-title--standalone {
+  margin: 0 8rpx 20rpx;
+}
+
+.paragraph {
+  display: block;
+  margin-bottom: 16rpx;
+  font-size: 26rpx;
+  line-height: 1.85;
+  color: var(--text-2);
+}
+
+.paragraph:last-child {
+  margin-bottom: 0;
+}
+
+.business {
+  display: flex;
+  align-items: flex-start;
+  padding: 28rpx;
+  margin-bottom: 20rpx;
+}
+
+.business-icon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 72rpx;
+  height: 72rpx;
+  font-size: 28rpx;
+  font-weight: 700;
+  color: var(--brand);
+  background: var(--brand-light);
+  border-radius: 22rpx;
+}
+
+.business-body {
+  flex: 1;
+  margin-left: 22rpx;
+}
+
+.business-title {
+  display: block;
+  font-size: 28rpx;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.business-desc {
+  display: block;
+  margin-top: 8rpx;
+  font-size: 24rpx;
+  line-height: 1.7;
+  color: var(--text-2);
+}
+
+.team {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 8rpx;
+}
+
+.team-chip {
+  padding: 8rpx 20rpx;
+  margin: 0 12rpx 14rpx 0;
+  font-size: 22rpx;
+  color: var(--brand);
+  background: var(--brand-light);
+  border-radius: 999rpx;
+}
+
+.value {
+  display: flex;
+  align-items: center;
+  padding: 26rpx 28rpx;
+  margin-bottom: 18rpx;
+}
+
+.value-title {
+  flex-shrink: 0;
+  padding: 6rpx 20rpx;
+  margin-right: 20rpx;
+  font-size: 24rpx;
+  font-weight: 600;
+  color: #ffffff;
+  background: linear-gradient(135deg, #2b4acb, #5b7cfa);
+  border-radius: 999rpx;
+}
+
+.value-desc {
+  flex: 1;
+  font-size: 25rpx;
+  line-height: 1.6;
+  color: var(--text-2);
+}
+
+.belief {
+  margin-top: 32rpx;
+  padding: 36rpx 32rpx;
+  background: linear-gradient(135deg, #1e36a0, #2b4acb 55%, #5b7cfa);
+  border-radius: 28rpx;
+  color: #ffffff;
+  box-shadow: 0 14rpx 32rpx rgba(43, 74, 203, 0.24);
+}
+
+.belief-label {
+  display: block;
+  font-size: 20rpx;
+  letter-spacing: 3rpx;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.belief-text {
+  display: block;
+  margin-top: 16rpx;
+  font-size: 30rpx;
+  font-weight: 600;
+  line-height: 1.6;
+}
+
+.belief-sub {
+  display: block;
+  margin-top: 16rpx;
+  font-size: 24rpx;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.footnote {
+  display: block;
+  margin-top: 36rpx;
+  padding: 0 12rpx;
+  font-size: 20rpx;
+  line-height: 1.7;
+  color: var(--text-3);
+  text-align: center;
+}

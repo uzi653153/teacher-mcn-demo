@@ -1,0 +1,53 @@
+<!--compare.wxml-->
+<view class="page">
+  <view class="loading" wx:if="{{loading}}">对比数据加载中...</view>
+
+  <empty-state
+    wx:elif="{{error}}"
+    title="无法对比"
+    desc="{{error}}"
+    action-text="返回重选"
+    bindaction="onRetry"
+  />
+
+  <block wx:else>
+    <view class="hint">横向查看 2-3 位老师的核心差异</view>
+
+    <view class="table">
+      <view class="row row--head">
+        <view class="cell cell--label"></view>
+        <view
+          class="cell cell--teacher"
+          wx:for="{{list}}"
+          wx:key="id"
+          data-id="{{item.id}}"
+          bindtap="onDetail"
+        >
+          <view class="avatar" style="background: {{item.avatarColor}}">
+            <image
+              wx:if="{{item.avatar}}"
+              class="avatar-img"
+              src="{{item.avatar}}"
+              mode="aspectFill"
+            />
+            <text wx:else class="avatar-text">{{item.initial}}</text>
+          </view>
+          <text class="teacher-name">{{item.name}}</text>
+          <text class="teacher-title">{{item.title}}</text>
+        </view>
+      </view>
+
+      <view class="row" wx:for="{{rows}}" wx:key="label">
+        <view class="cell cell--label">{{item.label}}</view>
+        <view
+          class="cell cell--value"
+          wx:for="{{item.values}}"
+          wx:for-item="value"
+          wx:key="*this"
+        >{{value}}</view>
+      </view>
+    </view>
+
+    <view class="tips">点击老师头像可查看完整介绍并发起预约</view>
+  </block>
+</view>

@@ -1,0 +1,50 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/detail/detail",
+    "pages/booking/booking",
+    "pages/my/my",
+    "pages/about/about",
+    "pages/login/login",
+    "pages/favorites/favorites",
+    "pages/compare/compare",
+    "pages/admin-bookings/admin-bookings",
+    "pages/courses/courses",
+    "pages/course-detail/course-detail",
+    "pages/my-courses/my-courses",
+    "pages/messages/messages",
+    "pages/admin-dashboard/admin-dashboard",
+    "pages/admin-teachers/admin-teachers"
+  ],
+  "window": {
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "有因有果",
+    "navigationBarBackgroundColor": "#2B4ACB",
+    "backgroundColor": "#F5F7FB",
+    "backgroundTextStyle": "dark"
+  },
+  "tabBar": {
+    "color": "#98A2B3",
+    "selectedColor": "#2B4ACB",
+    "backgroundColor": "#FFFFFF",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "images/tab-home.png",
+        "selectedIconPath": "images/tab-home-active.png"
+      },
+      {
+        "pagePath": "pages/my/my",
+        "text": "我的",
+        "iconPath": "images/tab-my.png",
+        "selectedIconPath": "images/tab-my-active.png"
+      }
+    ]
+  },
+  "style": "v2",
+  "componentFramework": "glass-easel",
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents"
+}
